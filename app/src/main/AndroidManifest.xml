@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.juliushekkala.juliusmobilecomp">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +24,15 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="ReminderReceiver"/>
+        <receiver android:name=".ReminderReceiver" />
+        <receiver android:name=".GeofenceReceiver" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDVlgyuJozZerBIvyRT0VZ4LlbWgmhK86o" />
     </application>
+
+
+
+
 
 </manifest>
