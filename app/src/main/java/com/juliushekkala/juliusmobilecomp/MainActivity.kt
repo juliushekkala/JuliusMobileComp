@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                     val adapter = ReminderAdapter(applicationContext, reminders)
                     list.adapter = adapter
                 } else {
+                    list.adapter = null
                     toast("Impossible to show reminders")
                 }
 
