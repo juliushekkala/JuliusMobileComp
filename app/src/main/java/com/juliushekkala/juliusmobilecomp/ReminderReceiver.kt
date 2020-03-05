@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.room.Room
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
 
 class ReminderReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {

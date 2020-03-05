@@ -37,7 +37,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     val GEOFENCE_ID = "REMINDER_GEOFENCE_ID"
     val GEOFENCE_RADIUS = 500
-    val GEOFENCE_EXPIRATION = 120 * 24 * 60 * 60 * 1000
+    val GEOFENCE_EXPIRATION = 10368000000
     val GEOFENCE_DWELL_DELAY = 2 * 60 * 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +64,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
             doAsync {
                 val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "reminders").build()
                 val uid = db.reminderDao().insert(reminder).toString().toInt()
-
+                reminder.uid = uid
                 db.close()
                 createGeofence(selectedLocation, reminder, geofencingClient)
             }
@@ -153,7 +153,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
                 val marker = addMarker(MarkerOptions().position(location).snippet(title).title(city))
                 marker.showInfoWindow()
 
-                addCircle(CircleOptions().center(location).strokeColor(Color.BLUE).fillColor(Color.CYAN))
+                addCircle(CircleOptions().center(location).radius(GEOFENCE_RADIUS.toDouble()).strokeColor(Color.argb(100, 148, 1, 1)).fillColor(Color.argb(15, 148, 1, 1)))
 
                 selectedLocation = location
 
